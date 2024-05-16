@@ -1,0 +1,74 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Fuel Pump Seal'],
+    
+    
+    'MPN':['SM-07263'],
+    
+    'AD LIST ITEM NUMBER':['1101027'],
+    
+    'Vendor Notes':['OEM# 513033862; OD:88MM (3.46"); ID:77.4MM (3.05"); T:5.3MM (0.21"); HARNDESS 70(+/-5); MATERIAL: VITON 70']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'Backcountry E-TEC 850',
+'Backcountry E-TEC 600R',
+'Backcountry Sport 600 EFI',
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 600',
+'Expedition Sport ACE 900',
+'Expedition SE ACE 900',
+'Expedition LE ACE 900',
+'Expedition SWT ACE 900',
+'Expedition SE ACE 900 Turbo',
+'Expedition LE ACE 900 Turbo',
+'Expedition SWT ACE 900 Turbo',
+'Expedition LE ACE 900 Turbo R',
+'Expedition SE ACE 900 Turbo R',
+'Expedition Xtreme ACE 900 Turbo R',
+'Freeride E-TEC 850 137',
+'Freeride E-TEC 850 146',
+'Freeride S-38 E-TEC 850 154',
+'Freeride E-TEC 850 154',
+'Freeride E-TEC 850 165',
+'Freeride E-TEC 850 Turbo 154',
+'Freeride E-TEC 850 Turbo 165',
+'Freeride E-TEC 850 Turbo 146'
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2017,2024))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
