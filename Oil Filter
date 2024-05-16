@@ -1,0 +1,155 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Oil Filter'],
+    
+    
+    'MPN':['SM-07163'],
+    
+    'AD LIST ITEM NUMBER':['120322'],
+    
+    'Vendor Notes':['(OLD ITEM) + O-RING 999905']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 600',
+'Expedition 1200 SE',
+'Expedition 1200',
+'Expedition SE 4-TEC 1200',
+'Expedition LE 4-TEC 1200',
+'Expedition Sport 600 ACE',
+'Expedition Sport ACE 900',
+'Expedition SE ACE 900',
+'Expedition LE ACE 900',
+'Expedition SWT ACE 900',
+'Expedition SE ACE 900 Turbo',
+'Expedition LE ACE 900 Turbo',
+'Expedition SWT ACE 900 Turbo',
+'Expedition LE ACE 900 Turbo R',
+'Expedition SE ACE 900 Turbo R',
+'Expedition Xtreme ACE 900 Turbo R',
+'Grand Touring Sport 600 ACE',
+'Grand Touring LE ACE 900',
+'Grand Touring SE ACE 900',
+'Grand Touring Limited ACE 900',
+'Grand Touring Limited ACE 900 Turbo',
+'Grand Touring Sport ACE 900',
+'Grand Touring Limited ACE 900 Turbo R',
+'GSX 1200 Limited',
+'GSX 1200 SE',
+'GSX LE ACE 900',
+'MX Z 600',
+'MX Z 600RS',
+'MX Z 600 Renegade X',
+'MX Z 600 Blizzard',
+'MX Z 600 Adrenaline',
+'MX Z 600 Trail',
+'MX Z 600 X',
+'MX Z 600 Sport',
+'MX Z 600 R Sport',
+'MX Z 600 Renegade',
+'MX Z 600 R X',
+'MX Z 1200 X',
+'MX Z 1200 Renegade X',
+'MX Z 1200 TNT',
+'MX Z 600 TNT',
+'MX Z 1200 Renegade',
+'MX Z 600 X-RS',
+'MX Z 1200 Adrenaline',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X 4-TEC 1200',
+'MX Z X E-TEC 600 HO',
+'MX Z TNT E-TEC 600 HO',
+'MX Z TNT 600 ACE',
+'MX Z X-RS 600',
+'MX Z TNT 4-TEC 1200',
+'MX Z TNT 600 Carb',
+'MX Z TNT ACE 900',
+'MX Z 600 50th Anniversary',
+'MX Z Blizzard E-TEC 600 HO',
+'MX Z Blizzard ACE 900',
+'MX Z Blizzard 4-TEC 1200',
+'MX Z 600 TNT Early Edition',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z Blizzard E-TEC 600R',
+'MX Z TNT E-TEC 600R',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'Renegade Adrenaline ACE 900',
+'Skandic SWT ACE 900',
+'Skandic WT ACE 900',
+'Renegade Enduro ACE 900',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Enduro ACE 900 Turbo',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Renegade Adrenaline ACE 900 Turbo R',
+'Renegade X-RS ACE 900 Turbo R',
+'Renegade Enduro ACE 900 Turbo R',
+'Renegade X ACE 900 Turbo R',
+'Skandic 600 WT',
+'Skandic 600 SUV',
+'Renegade 600 Adrenaline',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade X E-TEC 600 HO',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Adrenaline E-TEC 600 HO',
+'Renegade Sport 600 ACE',
+'Skandic WT E-TEC 600 HO',
+'Skandic WT 600 ACE',
+'Skandic WT 600',
+'Skandic Tundra LT 600 ACE',
+'Skandic SWT E-TEC 600 HO',
+'Skandic SWT ACE 600',
+'Renegade Sport 600 Carb',
+'Renegade Enduro E-TEC 600 HO',
+'Renegade Adrenaline E-TEC 600R',
+'Renegade Enduro E-TEC 600R',
+'Renegade X E-TEC 600R',
+'Renegade Sport 600 EFI',
+'Skandic SWT E-TEC 600R',
+'Skandic WT E-TEC 600R',
+'Skandic WT 600 EFI',
+'Skandic Sport 600 EFI',
+'Renegade X-RS with Comp Package E-TEC 600R',
+'Skandic LE 600 ACE',
+'Skandic LE 600 EFI',
+'Skandic LE E-TEC 600R',
+'Skandic SE E-TEC 600R'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2011,2024))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
