@@ -1,0 +1,134 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['UPPER/LOWER A-ARMS'],
+    'Component Type':['Upper - RH'],
+
+    
+    
+    'MPN':['SM-08655R'],    
+    
+    'AD LIST ITEM NUMBER':['1101030'],
+    
+    'Vendor Notes':['OEM# 2703-922; WITH BALL JOINT']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'Bearcat 3000 LT',
+'M 8000 153',
+'M 8000 Sno Pro 153',
+'M 8000 Sno Pro 162',
+'M 8000 Limited 153',
+'M 8000 Limited 162',
+'M 8000 Limited ES 162',
+'M 8000 Limited ES 153',
+'M 8000 HCR 153',
+'M 9000 HCR 162',
+'M 9000 153',
+'M 9000 Sno Pro 162',
+'M 9000 Limited 162',
+'ProCross F 1100 Turbo Sno Pro RR',
+'ProCross F 1100 Turbo Sno Pro Limited',
+'ProCross F 1100 Turbo Sno Pro',
+'ProCross F 800 Sno Pro RR',
+'ProCross F 800 Sno Pro Limited',
+'ProCross F 800 Sno Pro',
+'ProCross F 1100 Sno Pro Limited',
+'ProCross F 1100 Sno Pro',
+'Sno Pro 500',
+'ProCross XF 1100 Turbo Sno Pro Limited',
+'ProCross XF 1100 Turbo Sno Pro',
+'ProCross XF 800 Sno Pro Limited',
+'ProCross XF 800 Sno Pro',
+'ProCross XF 1100 Sno Pro Limited',
+'ProCross XF 1100 Sno Pro',
+'ProClimb XF 1100 Turbo Sno Pro High Country Ltd',
+'ProClimb XF 1100 Turbo Sno Pro High Country',
+'ProClimb XF 800 Sno Pro High Country',
+'ProClimb XF 800 Sno Pro High Country Ltd',
+'Sno Pro 120',
+'ProClimb M 1100 Turbo Sno Pro Limited',
+'ProClimb M 1100 Turbo Sno Pro',
+'ProClimb M 800 Sno Pro Limited (153)',
+'ProClimb M 800 Sno Pro Limited (162)',
+'ProClimb M 800 Sno Pro (162)',
+'ProClimb M 800 Sno Pro (153)',
+'ZR 7000 Sno Pro 129',
+'ZR 8000 Sno Pro 129',
+'ZR 9000 Sno Pro 129',
+'XF 7000 Sno Pro',
+'XF 7000 Cross Country Sno Pro',
+'XF 8000 Cross Country Sno Pro',
+'XF 8000 Sno Pro',
+'XF 8000 High Country Sno Pro',
+'XF 9000 High Country Sno Pro',
+'XF 9000 Cross Country Sno Pro',
+'XF 9000 Sno Pro',
+'M 6000 Sno Pro 153',
+'ZR 6000 Sno Pro 129',
+'XF 6000 Sno Pro',
+'M 7000 Sno Pro 153',
+'ZR 6000 Sno Pro 137',
+'ZR 7000 Sno Pro 137',
+'ZR 8000 Sno Pro 137',
+'ZR 9000 Sno Pro 137',
+'M 6000 Sno Pro 141',
+'M 7000 Sno Pro 162',
+'M 8000 Sno Pro 141',
+'ZR 4000 Sno Pro',
+'ZR 6000 Sno Pro ES 129',
+'ZR 6000 Sno Pro ES 137',
+'ZR 8000 Sno Pro ES 129',
+'ZR 8000 Sno Pro ES 137',
+'M 6000 Sno Pro ES 153',
+'M 8000 Sno Pro ES 141',
+'M 8000 Sno Pro ES 153',
+'M 8000 Sno Pro ES 162',
+'M 8000 Sno Pro 153 Early Build',
+'M 8000 Sno Pro 162 Early Build',
+'ZR 8000 Sno Pro ES 129 Early Build',
+'ZR 8000 Sno Pro ES 137 Early Build',
+'Norseman 3000',
+'Norseman 6000 ES',
+'Norseman 3000 ES',
+'Norseman X 6000',
+'Norseman X 8000',
+'ProClimb M 1100 Turbo HCR',
+'ProClimb M 1100 Turbo',
+'ProClimb M 1100'
+
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2013,2025))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
