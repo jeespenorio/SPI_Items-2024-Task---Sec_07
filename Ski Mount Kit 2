@@ -1,0 +1,80 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Ski Mount Kit'],
+    
+    
+    'MPN':['SM-08356'],
+    
+    'AD LIST ITEM NUMBER':['999574'],
+    
+    'Vendor Notes':['REF# 15-8229; A KIT CONTAINS: RUBBER STOPPER X 2/PCS, STEEL PLATE X 2/PCS, HARDWARE KIT X 1/KIT. FOR INSTALLATION OF CAMSO SKI.']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'FX10RTR FX Nytro RTX',
+'FX10 FX Nytro',
+'FX10XT FX Nytro XTX',
+'FX10M FX Nytro MTX SE 162',
+'FX10M FX Nytro MTX SE 153',
+'FX10M FX Nytro MTX 153',
+'FX10XT FX Nytro XTX 1.75',
+'FX10M FX Nytro MTX 162',
+'PZ50 Phazer',
+'PZ50GT Phazer GT',
+'PZ50MT Phazer Mountain Lite',
+'PZ50RT Phazer RTX',
+'PZ50MT Phazer MTX',
+'PZ50XT Phazer XTX',
+'RST90GT RS Venture GT',
+'RST90 RS Venture',
+'PZ50VT Venture Lite',
+'RS10 RS Venture TF',
+'PZ50 Venture MP',
+'600 SwitchBack Adventure',
+'800 SwitchBack Adventure',
+'550 INDY Adventure 144',
+'550 INDY Adventure 155',
+'RST90TF RS Venture TF',
+'RST90TFY RS Venture TF BAT',
+'RST90TFL RS Venture TF LE',
+'800 Titan Adventure 155',
+'RST1NTF RS Venture TF',
+'RST1NTF RS Venture TF BAT',
+'SR10 SR Venture DX'
+
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2008,2018))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
