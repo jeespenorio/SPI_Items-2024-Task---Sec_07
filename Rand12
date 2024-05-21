@@ -1,0 +1,111 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Type':['MAP SENSOR'],
+    
+    'MPN':['1101001'],
+    
+    'AD LIST ITEM NUMBER':['AT-01595'],
+    
+    'Vendor Notes':['OEM# 5S7-82380-00; 3 PIN. HOLE:6.3MM']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'RX10GT Apex GT',
+'RX10RT Apex RTX',
+'RX10RTR Apex RTX ER',
+'RX10R Apex ER',
+'RX10MT Apex MTX',
+'RX10MTA Apex MTX SE 40th Anniv',
+'RX10MS Apex Mountain SE',
+'RX10M Apex Mountain',
+'RX10LT Apex LTX',
+'RX10GTA Apex GT 40th Anniv',
+'RX10LTGTA Apex LTX GT 40th Anniv',
+'RX10 Apex',
+'RX10LTGT Apex LTX GT',
+'RX10PS Apex SE',
+'RX10XT Apex XTX',
+'RX10XT75 Apex XTX 1.75',
+'RX10XTL Apex XTX 1.75 LE',
+'RX10L Apex LE',
+'RX10L Apex LE 50th',
+'YFM700 Grizzly FI 4x4 Auto',
+'YFM700 Grizzly FI 4x4 Auto EPS',
+'YFM700 Grizzly FI 4x4 Auto EPS SE',
+'YFM700 Grizzly EPS LE',
+'YFM700 Grizzly EPS',
+'YFM700 Grizzly EPS SE',
+'YFM700 Grizzly EPS XT-R',
+'YFM700K Kodiak EPS',
+'YFM700K Kodiak',
+'YFM700K Kodiak EPS SE',
+'YFZ450R',
+'YFZ450R SE',
+'YXC700 Viking VI',
+'YXC700 Viking VI EPS',
+'YXC700 Viking VI EPS SE',
+'YXC700 Viking VI EPS Ranch Edition',
+'YXE70 Wolverine R-Spec',
+'YXE70 Wolverine R-Spec EPS',
+'YXE70 Wolverine',
+'YXE70 Wolverine R-Spec EPS SE',
+'YXE70 Wolverine EPS',
+'XVS950 Bolt',
+'XVS950 Bolt R-Spec',
+'XVS950 Bolt C-Spec',
+'EX1050 EX',
+'EX1050 EX Sport',
+'EX1050 EX Deluxe',
+'ER1050 EXR',
+'EX1050 EX Limited',
+'FZ6R',
+'SR400',
+'XVS13 Stryker',
+'XVS13 Stryker Bullet Cowl',
+'XVS950CT V Star 950 Tourer',
+'XVS950 V Star 950',
+'XVS1300 V Star 1300',
+'XVS1300A V Star 1300 Tourer',
+'XVS1300 V Star 1300 Deluxe',
+'VX1050E WaveRunner V1',
+'VX1050D WaveRunner V1 Sport',
+'VX1050C WaveRunner VX',
+'VX1050F WaveRunner VX Limited',
+'VX1050A WaveRunner VX Cruiser',
+'VX1050B WaveRunner VX Deluxe',
+'VX1050 WaveRunner VX-C'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2009,2019))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
