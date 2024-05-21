@@ -1,0 +1,188 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Type':['IGNITION COIL'],
+    
+    'MPN':['1101053'],
+    
+    'AD LIST ITEM NUMBER':['WC-01217'],
+    
+    'Vendor Notes':['OEM# 290664020, 296000307, 420664020REF# 129700-4410, 17-112-012PIN']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'Elite',
+'Expedition 4-Tec',
+'Expedition V-1300',
+'Expedition TUV V-1000',
+'Legend V-1000 Sport',
+'Grand Touring V-1000 Sport',
+'Legend V-1000',
+'Legend V-1000 GT SE',
+'Legend V-1000 GT Sport',
+'Legend V-1000 SE',
+'GTI 130',
+'GTI Limited 155',
+'GTI SE 130',
+'GTI SE 155',
+'GTI',
+'GTI SE',
+'GTI 90',
+'GTI SE 170',
+'Scout',
+'Scout Sixty',
+'Scout Bobber',
+'Scout 100th Anniversary',
+'Scout Bobber Twenty',
+'Scout Bobber Sixty',
+'Scout Rogue Sixty',
+'Scout Rogue',
+'GTR 230',
+'GTR-X 230',
+'GTS 300',
+'GTS 300 Super',
+'GTS 300 Super Sport',
+'GTS 300 Touring',
+'GTS 300 SuperTech',
+'GTS 300 Super Notte',
+'GTS 300 Yacht Club',
+'GTS 300 Super Racing Sixties',
+'GTS 300 75th',
+'Islandia SE',
+'Islandia',
+'RXP Supercharged',
+'RXP',
+'RXP 155',
+'RXP 215',
+'RXP BVIC',
+'RXP NA',
+'RXP X 255',
+'RXP X 260',
+'RXP-X 300',
+'RXT',
+'RXT BVIC',
+'RXT 215',
+'RXT X 255',
+'RXT iS 255',
+'RXT X 260',
+'RXT iS 260',
+'RXT 260',
+'RXT X aS 260',
+'RXT-X 300',
+'RXT-X aS 260',
+'RXT 230',
+'Speedster Wake',
+'200 Speedster',
+'150 Speedster (155 hp)',
+'150 Speedster HO',
+'150 Speedster (215 hp)',
+'150 Speedster (255 hp)',
+'150 Speedster',
+'Speedster',
+'Speedster SK',
+'1600 Speedster',
+'200 Speedster SC',
+'Speed Twin',
+'Speed Twin Breitling Edition',
+'230 Challenger',
+'180 Challenger',
+'180 Challenger CS',
+'180 Challenger SE (215 hp)',
+'180 Challenger SE (255 hp)',
+'180 Challenger SE (1.5L HO)',
+'180 Challenger SE (1.5L Supercharged)',
+'230 Challenger SP (310 hp)',
+'230 Challenger SE (430 hp)',
+'230 Challenger SP (430 hp)',
+'230 Challenger SE (510 hp)',
+'210 Challenger',
+'210 Challenger SE (310 hp)',
+'210 Challenger SE (430 hp)',
+'230 Challenger SE Supercharged',
+'230 Challenger SE HO',
+'230 Challenger SE',
+'210 Challenger SE (1.5L)',
+'210 Challenger SE Supercharged (1.5L)',
+'210 Challenger S',
+'1800 Challenger',
+'Challenger',
+'2000 Challenger',
+'2000 Challenger 200',
+'2000 Challenger 240 EFI',
+'1800 Challenger 240 EFI',
+'1800 Challenger 210',
+'Challenger X',
+'230 Challenger',
+'180 Challenger',
+'180 Challenger CS',
+'180 Challenger SE (215 hp)',
+'180 Challenger SE (255 hp)',
+'180 Challenger SE (1.5L HO)',
+'180 Challenger SE (1.5L Supercharged)',
+'230 Challenger SP (310 hp)',
+'230 Challenger SE (430 hp)',
+'230 Challenger SP (430 hp)',
+'230 Challenger SE (510 hp)',
+'210 Challenger',
+'210 Challenger SE (310 hp)',
+'210 Challenger SE (430 hp)',
+'230 Challenger SE Supercharged',
+'230 Challenger SE HO',
+'230 Challenger SE',
+'210 Challenger SE (1.5L)',
+'210 Challenger SE Supercharged (1.5L)',
+'210 Challenger S',
+'1800 Challenger',
+'Challenger',
+'2000 Challenger',
+'2000 Challenger 200',
+'2000 Challenger 240 EFI',
+'1800 Challenger 240 EFI',
+'1800 Challenger 210',
+'Challenger X',
+'205 Utopia SE (430 hp)',
+'205 Utopia (310 hp)',
+'210 SP',
+'Wake 215',
+'Wake 155',
+'Wake Pro 215',
+'Speedster Wake',
+'210 Wake (310 hp)',
+'210 Wake (430 hp)',
+'210 Wake (1.5L)',
+'210 Wake Supercharged (1.5L)',
+'Sportster 4 TEC'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2002,2018))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
