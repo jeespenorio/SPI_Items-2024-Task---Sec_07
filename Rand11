@@ -1,0 +1,192 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Type':['CAMSHAFT POSITION SENSOR'],
+    
+    'MPN':['1101002'],
+    
+    'AD LIST ITEM NUMBER':['AT-01595'],
+    
+    'Vendor Notes':['OEM# 290664040, 420664040, 420664041, 420664042, 420664043, 420664044, 420664045, 420664046, 420664049 WITH O-RING X 1PC']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'Elite',
+'Expedition Sport V-800',
+'Expedition TUV 600',
+'Expedition TUV V-800',
+'Expedition V-1300',
+'Expedition TUV V-1000',
+'Expedition 4-Tec',
+'Expedition 800 TUV Yeti II',
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 1200 SE',
+'Expedition 600',
+'Expedition 1200',
+'Expedition SE 4-TEC 1200',
+'Expedition LE 4-TEC 1200',
+'Expedition SE E-TEC 600 HO',
+'Expedition LE E-TEC 600 HO',
+'Expedition Sport 600 ACE',
+'Expedition Sport ACE 900',
+'Expedition SE ACE 900',
+'Expedition LE ACE 900',
+'Expedition Xtreme E-TEC 800R',
+'Expedition SWT ACE 900',
+'Expedition Xtreme E-TEC 850',
+'Expedition SE E-TEC 600R',
+'Expedition SE ACE 900 Turbo',
+'Expedition LE E-TEC 600R',
+'Expedition LE ACE 900 Turbo',
+'Expedition SWT E-TEC 600R',
+'Expedition SWT ACE 900 Turbo',
+'Expedition Sport 600 EFI',
+'Expedition LE ACE 900 Turbo R',
+'Expedition SE ACE 900 Turbo R',
+'Expedition SE E-TEC 850',
+'Expedition Xtreme ACE 900 Turbo R',
+'Grand Touring',
+'Grand Touring XTC',
+'Grand Touring 700',
+'Grand Touring 600',
+'Grand Touring 700 GS',
+'Grand Touring 600 SE',
+'Grand Touring 600 Sport',
+'Grand Touring 600 GS',
+'Grand Touring 700 Sport',
+'Grand Touring 700 SE',
+'Grand Touring V-1000 Sport',
+'Grand Touring 1200 SE',
+'Grand Touring 600 LE',
+'Grand Touring 1200 LE',
+'Grand Touring LE 4-TEC 1200',
+'Grand Touring LE E-TEC 600 HO',
+'Grand Touring Sport 600 ACE',
+'Grand Touring SE 4-TEC 1200',
+'Grand Touring Sport 600 Carb',
+'Grand Touring LE ACE 900',
+'Grand Touring SE ACE 900',
+'Grand Touring Limited E-TEC 600R',
+'Grand Touring Limited ACE 900',
+'Grand Touring Limited ACE 900 Turbo',
+'Grand Touring Sport ACE 900',
+'Grand Touring Limited ACE 900 Turbo R',
+'GSX SE E-TEC 800R',
+'GSX SE 4-TEC 1200',
+'GSX LE 4-TEC 1200',
+'GSX SE E-TEC 600 HO',
+'GSX LE E-TEC 600 HO',
+'GSX LE ACE 900',
+'Legend Touring V-800',
+'Legend Trail V-800',
+'Legend 800 SE',
+'Legend V-1000 Sport',
+'Legend 800 SE SDI',
+'Legend V-1000',
+'Legend V-1000 GT SE',
+'Legend V-1000 GT Sport',
+'Legend V-1000 SE',
+'Mach Z ACE 900 Turbo R',
+'MX Z X 4-TEC 1200',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X E-TEC 600 HO',
+'MX Z TNT 4-TEC 1200',
+'MX Z TNT E-TEC 600 HO',
+'MX Z TNT 600 ACE',
+'MX Z TNT 600 Carb',
+'MX Z Sport 600 ACE',
+'MX Z Sport 600 Carb',
+'MX Z TNT ACE 900',
+'MX Z Blizzard E-TEC 600 HO',
+'MX Z Blizzard ACE 900',
+'MX Z Blizzard 4-TEC 1200',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z Blizzard E-TEC 600R',
+'MX Z TNT E-TEC 600R',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'Renegade X 4-TEC 1200',
+'Renegade X E-TEC 600 HO',
+'Renegade Adrenaline E-TEC 600 HO',
+'Renegade Adrenaline ACE 900',
+'Renegade Adrenaline 4-TEC 1200',
+'Renegade Sport 600 ACE',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Sport 600 Carb',
+'Renegade Enduro E-TEC 600 HO',
+'Renegade Enduro ACE 900',
+'Renegade Enduro 4-TEC 1200',
+'Renegade Adrenaline E-TEC 600R',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Enduro E-TEC 600R',
+'Renegade Enduro ACE 900 Turbo',
+'Renegade X E-TEC 600R',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Skandic V-800 SWT',
+'Skandic V-800 Tundra',
+'Skandic 600 WT',
+'Skandic 600 SUV',
+'Skandic V-800 Tundra LT',
+'Skandic WT E-TEC 600 HO',
+'Skandic SWT',
+'Skandic Tundra Xtreme',
+'Skandic WT 600 ACE',
+'Skandic WT 600',
+'Skandic Tundra LT 600 ACE',
+'Skandic SWT E-TEC 600 HO',
+'Skandic SWT ACE 600',
+'Skandic SWT ACE 900',
+'Skandic WT ACE 900',
+'Skandic SWT E-TEC 600R',
+'Skandic WT E-TEC 600R',
+'Skandic WT 600 EFI',
+'Skandic Sport 600 EFI',
+'Skandic LE 600 ACE',
+'Skandic LE 600 EFI',
+'Skandic LE ACE 900',
+'Skandic LE E-TEC 600R',
+'Skandic SE ACE 900',
+'Skandic SE E-TEC 600R',
+'Tundra Xtreme E-TEC 600 HO',
+'Tundra LT ACE 600',
+'Tundra Sport ACE 600',
+'Tundra LT 600 EFI',
+'Tundra Sport 600 EFI'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2009,2024))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
